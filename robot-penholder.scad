@@ -2,7 +2,7 @@
 // the wings are for a rubber band to be stretched around, to push the pen downward.
 // don't ask me what keeps the pen from falling out when it's lifted away from the paper.
 
-penDiameter = (40/64)*25.4; // diameter of the pen
+penDiameter = 12.35+0.5; // diameter of a sharpie plus reality correction
 
 grabbedRadius = (1+5/8)*25.4/2; // where the bracket clamps onto it is 1+5/8"
 grabbedHeight = (1)*25.4; // clamped part height
