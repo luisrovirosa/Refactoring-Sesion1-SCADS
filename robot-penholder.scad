@@ -13,6 +13,8 @@ hatHeight = 0.25 * 25.4; // thickness of hat (everything is printed upside down)
 holeHeight = (grabbedHeight + hatHeight) * 3; // a cylinder for the marker pen to ride in
 holeRadius = penDiameter / 2; // radius of the pen hole
 
+HAT_CORRECTION = 0.001;
+
 $fn = 50; // how many panels make up a cylinder shape
 
 function half(measure) = measure / 2; 
@@ -24,8 +26,9 @@ module grabbedPart() {
 }
 
 module hat() {
-   translate([0, 0, hatHeight / 2])
-		cylinder(r = hatRadius, h = hatHeight + 0.001, center = true);
+	height = hatHeight + HAT_CORRECTION;
+   translate([0, 0, half(hatHeight)])
+		cylinder(r = hatRadius, h = height, center = true);
 }
 
 module wingarm() {
