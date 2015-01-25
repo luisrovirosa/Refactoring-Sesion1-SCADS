@@ -20,6 +20,9 @@ holeRadius = penDiameter / 2; // radius of the pen hole
 RIGTH_ON_Z = [0, 0, 90];
 HAT_CORRECTION = 0.001;
 
+RIGHT_SIDE = 1;
+LEFT_SIDE = -1;
+
 $fn = 50; // how many panels make up a cylinder shape
 
 function half(measure) = measure / 2; 
@@ -43,17 +46,21 @@ module wingarm() {
 			cube([armHeight, armLongitude, armHeight], center = true);
 }
 
-module rightWing() {
+module wing(SIDE) {
 	offsetX = hatRadius + half(armMargin) + half(armHeight);
 	offsetY = armHeight * half(ARM_RELATION_WIDTH_LENGTH) - half(armHeight);
 	armLength = armHeight * ARM_RELATION_WIDTH_LENGTH;
-	translate([offsetX, offsetY, half(hatHeight)])
+	translate([SIDE * offsetX, offsetY, half(hatHeight)])
 		cube([armHeight, armLength, armHeight], center = true);
 }
 
+module rightWing() {
+	wing(RIGHT_SIDE);
+}
+
+
 module leftWing() {
-	translate([-1 * (hatRadius + hatHeight), hatHeight * 1.5, hatHeight / 2])
-		cube([hatHeight, hatHeight * 4, hatHeight], center = true);
+	wing(LEFT_SIDE);
 }
 
 module penHole() {
