@@ -30,16 +30,19 @@ module wingarm() {
 			cube([hatHeight,hatRadius*2+hatHeight*4,hatHeight],center=true);
 }
 
+module rightWing() {
+	translate([hatRadius+hatHeight,hatHeight*1.5,hatHeight/2])
+		cube([hatHeight,hatHeight*4,hatHeight],center=true);
+}
+
 difference() {
   union() { // all these things together are the first line of difference()
 
 	grabbedPart();
 	hat();
 	wingarm();
+	rightWing();
 
-	 // wing
-	translate([hatRadius+hatHeight,hatHeight*1.5,hatHeight/2])
-		cube([hatHeight,hatHeight*4,hatHeight],center=true);
 
 	 // wing
 	translate([-1*(hatRadius+hatHeight),hatHeight*1.5,hatHeight/2])
