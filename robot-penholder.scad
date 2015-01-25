@@ -12,6 +12,7 @@ hatHeight = 0.25 * 25.4; // thickness of hat (everything is printed upside down)
 
 armHeight = hatHeight;
 armMargin = armHeight;
+ARM_RELATION_WIDTH_LENGTH = 4;
 
 holeHeight = (grabbedHeight + hatHeight) * 3; // a cylinder for the marker pen to ride in
 holeRadius = penDiameter / 2; // radius of the pen hole
@@ -24,8 +25,8 @@ $fn = 50; // how many panels make up a cylinder shape
 function half(measure) = measure / 2; 
 
 module grabbedPart() {
-	offset_z = half(grabbedHeight) + hatHeight;
-	translate([0, 0, offset_z])
+	offsetZ = half(grabbedHeight) + hatHeight;
+	translate([0, 0, offsetZ])
 		cylinder(r = grabbedRadius, h = grabbedHeight, center = true);
 }
 
@@ -43,8 +44,11 @@ module wingarm() {
 }
 
 module rightWing() {
-	translate([hatRadius + hatHeight, hatHeight * 1.5, hatHeight / 2])
-		cube([hatHeight, hatHeight * 4, hatHeight], center = true);
+	offsetX = hatRadius + half(armMargin) + half(armHeight);
+	offsetY = armHeight * half(ARM_RELATION_WIDTH_LENGTH) - half(armHeight);
+	armLength = armHeight * ARM_RELATION_WIDTH_LENGTH;
+	translate([offsetX, offsetY, half(hatHeight)])
+		cube([armHeight, armLength, armHeight], center = true);
 }
 
 module leftWing() {
