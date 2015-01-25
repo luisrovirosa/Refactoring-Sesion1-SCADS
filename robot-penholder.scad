@@ -24,17 +24,18 @@ module hat() {
 		cylinder(r = hatRadius, h = hatHeight+0.001,center=true);
 }
 
+module wingarm() {
+	translate([0,0,hatHeight/2])
+		rotate([0,0,90])
+			cube([hatHeight,hatRadius*2+hatHeight*4,hatHeight],center=true);
+}
+
 difference() {
   union() { // all these things together are the first line of difference()
 
 	grabbedPart();
-
 	hat();
-	
-	 // wingarm
-	translate([0,0,hatHeight/2])
-		rotate([0,0,90])
-			cube([hatHeight,hatRadius*2+hatHeight*4,hatHeight],center=true);
+	wingarm();
 
 	 // wing
 	translate([hatRadius+hatHeight,hatHeight*1.5,hatHeight/2])
