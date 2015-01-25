@@ -40,6 +40,13 @@ module leftWing() {
 		cube([hatHeight,hatHeight*4,hatHeight],center=true);
 }
 
+module penHole() {
+	// when the robot's manipulator is straight down, the grabbed part is tilted 26 degrees.
+	rotate([26,0,0])
+		translate([0,7,0])
+			cylinder(r = holeRadius, h = holeHeight,center=true);
+}
+
 difference() {
 	union() { // all these things together are the first line of difference()
 		grabbedPart();
@@ -49,9 +56,5 @@ difference() {
 		leftWing();
 	}
 
-	// when the robot's manipulator is straight down, the grabbed part is tilted 26 degrees.
-	// penhole
-	rotate([26,0,0])
-		translate([0,7,0])
-			cylinder(r = holeRadius, h = holeHeight,center=true);
+	penHole();
 }
