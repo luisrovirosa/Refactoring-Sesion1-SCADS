@@ -4,10 +4,12 @@
 
 penDiameter = 12.35 + 0.5; // diameter of a sharpie plus reality correction
 
-grabbedRadius = (1 + 5 / 8) * 25.4 / 2; // where the bracket clamps onto it is 1+5/8"
+BRACKET_SIZE = (1 + 5 / 8);
+
+grabbedRadius = radius(BRACKET_SIZE * 25.4); // where the bracket clamps onto it is 1+5/8"
 grabbedHeight = 1 * 25.4; // clamped part height
 
-hatRadius = (1 + (5 / 8) + (1 / 2)) * 25.4 / 2; // the top hat 
+hatRadius = radius((BRACKET_SIZE + 0.5) * 25.4); // the top hat 
 hatHeight = 0.25 * 25.4; // thickness of hat (everything is printed upside down)
 
 armHeight = hatHeight;
@@ -28,6 +30,7 @@ LEFT_SIDE = -1;
 $fn = 50; // how many panels make up a cylinder shape
 
 function half(measure) = measure / 2; 
+function radius(diameter) = half(diameter);
 
 module grabbedPart() {
 	offsetZ = half(grabbedHeight) + hatHeight;
@@ -82,7 +85,6 @@ module structure() {
 }
 
 module penHolder() {
-	
 	difference() {
 		structure();
 		penHole();
