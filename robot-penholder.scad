@@ -14,9 +14,14 @@ holeRadius = penDiameter/2; // radius of the pen hole
 
 $fn = 50; // how many panels make up a cylinder shape
 
-module grabbedPart (){
+module grabbedPart() {
     translate([0,0,grabbedHeight/2+hatHeight])
 		cylinder(r = grabbedRadius, h = grabbedHeight,center=true);
+}
+
+module hat() {
+   translate([0,0,hatHeight/2])
+		cylinder(r = hatRadius, h = hatHeight+0.001,center=true);
 }
 
 difference() {
@@ -24,9 +29,7 @@ difference() {
 
 	grabbedPart();
 
-	// brim of "hat" shape
-   translate([0,0,hatHeight/2])
-		cylinder(r = hatRadius, h = hatHeight+0.001,center=true);
+	hat();
 	
 	 // wingarm
 	translate([0,0,hatHeight/2])
