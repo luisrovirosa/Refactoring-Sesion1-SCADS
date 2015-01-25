@@ -14,12 +14,15 @@ holeRadius = penDiameter/2; // radius of the pen hole
 
 $fn = 50; // how many panels make up a cylinder shape
 
+module grabbedPart (){
+    translate([0,0,grabbedHeight/2+hatHeight])
+		cylinder(r = grabbedRadius, h = grabbedHeight,center=true);
+}
+
 difference() {
   union() { // all these things together are the first line of difference()
 
-	// grabbed part
-    translate([0,0,grabbedHeight/2+hatHeight])
-		cylinder(r = grabbedRadius, h = grabbedHeight,center=true);
+	grabbedPart();
 
 	// brim of "hat" shape
    translate([0,0,hatHeight/2])
