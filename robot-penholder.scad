@@ -16,6 +16,8 @@ ARM_RELATION_WIDTH_LENGTH = 4;
 
 holeHeight = (grabbedHeight + hatHeight) * 3; // a cylinder for the marker pen to ride in
 holeRadius = penDiameter / 2; // radius of the pen hole
+HOLE_INCLINATION = [26,0,0];
+HOLE_POSITION = [0,7,0];
 
 RIGTH_ON_Z = [0, 0, 90];
 HAT_CORRECTION = 0.001;
@@ -64,10 +66,9 @@ module leftWing() {
 }
 
 module penHole() {
-	// when the robot's manipulator is straight down, the grabbed part is tilted 26 degrees.
-	rotate([26,0,0])
-		translate([0,7,0])
-			cylinder(r = holeRadius, h = holeHeight, center=true);
+	rotate(HOLE_INCLINATION)
+		translate(HOLE_POSITION)
+			cylinder(r = holeRadius, h = holeHeight, center = true);
 }
 
 module penHolder() {
@@ -79,7 +80,6 @@ module penHolder() {
 			rightWing();
 			leftWing();
 		}
-
 		penHole();
 	}
 }
