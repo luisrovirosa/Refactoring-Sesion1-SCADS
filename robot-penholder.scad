@@ -2,24 +2,31 @@
 // the wings are for a rubber band to be stretched around, to push the pen downward.
 // don't ask me what keeps the pen from falling out when it's lifted away from the paper.
 
-penDiameter = 12.35 + 0.5; // diameter of a sharpie plus reality correction
+REALITY_CORRECTION = 0.5;
+INCHES = 1;
+BRACKET_SIZE = (1 + 5 / 8) * INCHES;
 
-BRACKET_SIZE = (1 + 5 / 8);
+REAL_PEN_DIAMETER = 12.35;
+penDiameter = REAL_PEN_DIAMETER + REALITY_CORRECTION;
 
-grabbedRadius = radius(BRACKET_SIZE * 25.4); // where the bracket clamps onto it is 1+5/8"
-grabbedHeight = 1 * 25.4; // clamped part height
+SCALE = 25.4;
 
-hatRadius = radius((BRACKET_SIZE + 0.5) * 25.4); // the top hat 
-hatHeight = 0.25 * 25.4; // thickness of hat (everything is printed upside down)
+grabbedRadius = radius(BRACKET_SIZE * SCALE);
+grabbedHeight = SCALE;
+
+RELATION_HAT_GRABBED = 0.25;
+hatRadius = radius((BRACKET_SIZE + REALITY_CORRECTION) * SCALE);
+hatHeight = RELATION_HAT_GRABBED * SCALE;
 
 armHeight = hatHeight;
 armMargin = armHeight;
 ARM_RELATION_WIDTH_LENGTH = 4;
 
-holeHeight = (grabbedHeight + hatHeight) * 3; // a cylinder for the marker pen to ride in
-holeRadius = penDiameter / 2; // radius of the pen hole
-HOLE_INCLINATION = [26,0,0];
-HOLE_POSITION = [0,7,0];
+BIG_NUMBER = 3;
+holeHeight = (grabbedHeight + hatHeight) * BIG_NUMBER;
+holeRadius = radius(penDiameter);
+HOLE_INCLINATION = [26, 0, 0];
+HOLE_POSITION = [0, 7, 0];
 
 RIGTH_ON_Z = [0, 0, 90];
 HAT_CORRECTION = 0.001;
@@ -27,7 +34,9 @@ HAT_CORRECTION = 0.001;
 RIGHT_SIDE = 1;
 LEFT_SIDE = -1;
 
-$fn = 50; // how many panels make up a cylinder shape
+MEDIUM_RESOLUTION = 50;
+RESOLUTION = MEDIUM_RESOLUTION;
+$fn = RESOLUTION;
 
 function half(measure) = measure / 2; 
 function radius(diameter) = half(diameter);
