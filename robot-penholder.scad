@@ -35,18 +35,18 @@ module rightWing() {
 		cube([hatHeight,hatHeight*4,hatHeight],center=true);
 }
 
-difference() {
-  union() { // all these things together are the first line of difference()
-
-	grabbedPart();
-	hat();
-	wingarm();
-	rightWing();
-
-
-	 // wing
+module leftWing() {
 	translate([-1*(hatRadius+hatHeight),hatHeight*1.5,hatHeight/2])
 		cube([hatHeight,hatHeight*4,hatHeight],center=true);
+}
+
+difference() {
+	union() { // all these things together are the first line of difference()
+		grabbedPart();
+		hat();
+		wingarm();
+		rightWing();
+		leftWing();
 	}
 
 	// when the robot's manipulator is straight down, the grabbed part is tilted 26 degrees.
