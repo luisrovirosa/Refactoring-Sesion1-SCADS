@@ -10,9 +10,13 @@ grabbedHeight = 1 * 25.4; // clamped part height
 hatRadius = (1 + (5 / 8) + (1 / 2)) * 25.4 / 2; // the top hat 
 hatHeight = 0.25 * 25.4; // thickness of hat (everything is printed upside down)
 
+armHeight = hatHeight;
+armMargin = armHeight;
+
 holeHeight = (grabbedHeight + hatHeight) * 3; // a cylinder for the marker pen to ride in
 holeRadius = penDiameter / 2; // radius of the pen hole
 
+RIGTH_ON_Z = [0, 0, 90];
 HAT_CORRECTION = 0.001;
 
 $fn = 50; // how many panels make up a cylinder shape
@@ -32,9 +36,10 @@ module hat() {
 }
 
 module wingarm() {
-	translate([0, 0, hatHeight / 2])
-		rotate([0, 0, 90])
-			cube([hatHeight, hatRadius * 2 + hatHeight * 4, hatHeight], center = true);
+	armLongitude = 2 * (hatRadius + armMargin + armHeight);
+	translate([0, 0, half(hatHeight)])
+		rotate(RIGTH_ON_Z)
+			cube([armHeight, armLongitude, armHeight], center = true);
 }
 
 module rightWing() {
