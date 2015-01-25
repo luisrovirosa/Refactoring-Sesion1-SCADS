@@ -71,15 +71,20 @@ module penHole() {
 			cylinder(r = holeRadius, h = holeHeight, center = true);
 }
 
+module structure() {
+	union() {
+		grabbedPart();
+		hat();
+		wingarm();
+		rightWing();
+		leftWing();
+	}
+}
+
 module penHolder() {
+	
 	difference() {
-		union() { // all these things together are the first line of difference()
-			grabbedPart();
-			hat();
-			wingarm();
-			rightWing();
-			leftWing();
-		}
+		structure();
 		penHole();
 	}
 }
